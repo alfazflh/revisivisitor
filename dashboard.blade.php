@@ -351,20 +351,22 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         <h2>Data Tamu</h2>
 
         <div class="filter-section">
-            <form method="GET" class="filter-form" id="filterForm">
-                <div>
-                    <label>Tanggal Awal Data:</label>
-                    <input type="date" name="start" value="{{ $start }}">
-                </div>
-                <div>
-                    <label>Tanggal Akhir Data:</label>
-                    <input type="date" name="end" value="{{ $end }}">
-                </div>
-                <div>
-                  <label>Cari Nama Tamu:</label>
-                  <input type="text" id="searchInput" placeholder="Ketik nama tamu..." />
-                </div>                
-            </form>
+          <form method="GET" class="filter-form" id="filterForm">
+            <div>
+                <label>Tanggal Awal Data:</label>
+                <input type="date" name="start" value="{{ $start }}">
+            </div>
+            <div>
+                <label>Tanggal Akhir Data:</label>
+                <input type="date" name="end" value="{{ $end }}">
+            </div>
+            <div>
+              <label>Cari Nama Tamu:</label>
+              <input type="text" id="searchInput" placeholder="Ketik nama tamu..." />
+            </div>
+            
+        </form>
+        
             <a class="export-btn" href="{{ route('export', ['start' => $start, 'end' => $end]) }}" target="_blank">Export to Excel</a>
         </div>
 
@@ -385,7 +387,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
                     @forelse ($dataTamu as $index => $row)
                         <tr>
                             <td>{{ $index + 1 }}</td>
-                            <td>{{ $row->jam_checkout }}</td>
+                            <td>{{ $row->created_at }}</td>
                             <td>{{ $row->nama_tamu }}</td>
                             <td>{{ $row->pegawai }}</td>
                             <td>{{ $row->keperluan }}</td>
@@ -552,7 +554,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     const rows = document.querySelectorAll("#dataTamu tbody tr");
 
     rows.forEach((row) => {
-        const namaTamu = row.children[1]?.textContent.toLowerCase() || "";
+        const namaTamu = row.children[2]?.textContent.toLowerCase() || "";
         row.style.display = namaTamu.includes(keyword) ? "" : "none";
     });
 });
