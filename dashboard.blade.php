@@ -420,8 +420,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
             </div>
             <div class="status">
               <label>Status</label><br>
-              <strong id="modalStatus">check-in</strong>
+              <strong id="modalStatus">-</strong>
             </div>
+            
+          
           </div>
       
           <div class="section-title">Perusahaan & Tujuan</div>
@@ -513,6 +515,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     document.getElementById("modalJumlah").innerText = data.jumlah ?? '-';
     document.getElementById("modalInduksi").innerText = data.induksi ?? '-';
     document.getElementById("modalApd").innerText = data.apd ?? '-';
+    document.getElementById("modalStatus").innerText = (data.status ?? '-').charAt(0).toUpperCase() + (data.status ?? '-').slice(1);
+
 
     const formatter = new Intl.DateTimeFormat('id-ID', {
         dateStyle: 'medium',
